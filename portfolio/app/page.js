@@ -1,11 +1,15 @@
-import Image from "next/image";
+'use client'
 import styles from "./page.module.css";
 import { Typography } from "@mui/material";
+import { Canvas } from "@react-three/fiber";
 
 export default function Home() {
   return (
-    <>
-    <Typography>Hi! I'm Sam</Typography>
-    </>
+    <Canvas>
+      <mesh>
+        <boxGeometry/>
+        <meshStandardMaterial/>
+      </mesh>
+    </Canvas>
   )
 }
