@@ -10,14 +10,16 @@ import * as THREE from "three"
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 const cameraPath = [
-  {position: new THREE.Vector3(0,3,2.5), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,0,0))},
-  {position: new THREE.Vector3(0,3.5,0.1), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,Math.PI/2,0))},
-  {position: new THREE.Vector3(3,3.5,0.1), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,0,0))}
+  {position: new THREE.Vector3(-0.5,1.5,0.5), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,0,0))},
+  {position: new THREE.Vector3(-1.3,2,-1.0), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,Math.PI/2,0))},
+  {position: new THREE.Vector3(-2.2,2.3,-0.8), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,0,Math.PI/2))},
+  {position: new THREE.Vector3(-2,1.35,-1.33), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,Math.PI/2.8,0))},
+  {position: new THREE.Vector3(-0.5,1.5,-0.6), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,Math.PI/5,0))},
+  {position: new THREE.Vector3(0.3,2.6,-4.2), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,Math.PI/2.4,Math.PI/2))}
 ]
 
 function CameraScroller() {
   const scroll = useScroll()
-  //const pathIndex = Math.floor(scroll.offset * (cameraPath.length))
   useFrame(({ camera }) => {
     const pathIndex = Math.min(Math.floor(scroll.offset * (cameraPath.length-1)), cameraPath.length-2)
     const lerpFactor = easeInOutCubic((scroll.offset * (cameraPath.length-1)) - pathIndex)
@@ -34,7 +36,7 @@ export default function Home() {
     <div style={{ width: "100vw", height: "100vh" }}>
       <Canvas camera={{fov: 50}}>
         <Suspense fallback={null}>
-          <ScrollControls pages={6}>
+          <ScrollControls pages={8}>
             <CameraScroller/>
           </ScrollControls>
           {/* <OrbitControls/> */}
