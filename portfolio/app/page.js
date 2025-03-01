@@ -4,6 +4,7 @@ import { Typography } from "@mui/material"
 import { Canvas, useLoader, useFrame } from "@react-three/fiber"
 import { Suspense } from "react"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 import { OrbitControls, PerspectiveCamera, ScrollControls, useScroll, Scroll } from '@react-three/drei'
 import * as THREE from "three"
 
@@ -30,7 +31,11 @@ function CameraScroller() {
 }
 
 export default function Home() {
-  const gltf = useLoader(GLTFLoader, '/ThreeJSPortfolioOptimized.glb')
+  const gltf = useLoader(GLTFLoader, '/ThreeJSPortfolioOptimized.glb', (loader) => {
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/draco-gltf/')
+    loader.setDRACOLoader(dracoLoader)
+  })
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
