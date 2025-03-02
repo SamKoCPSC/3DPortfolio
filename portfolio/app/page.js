@@ -1,4 +1,5 @@
 'use client'
+import dynamic from "next/dynamic"
 import styles from "./page.module.css"
 import { Typography } from "@mui/material"
 import { Canvas, useLoader, useFrame } from "@react-three/fiber"
@@ -30,13 +31,16 @@ function CameraScroller() {
   return null;
 }
 
-export default function Home() {
+function PortfolioModel() {
   const gltf = useLoader(GLTFLoader, '/ThreeJSPortfolioOptimized.glb', (loader) => {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/draco-gltf/')
     loader.setDRACOLoader(dracoLoader)
   })
+  return <primitive object={gltf.scene}/>
+}
 
+export default function Home() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Canvas camera={{fov: 50}}>
@@ -46,7 +50,7 @@ export default function Home() {
           </ScrollControls>
           {/* <OrbitControls/> */}
           <ambientLight/>
-          <primitive object={gltf.scene}/>
+          <PortfolioModel/>
         </Suspense>
       </Canvas>
     </div>
