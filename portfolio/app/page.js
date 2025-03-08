@@ -34,12 +34,25 @@ function CameraScroller() {
 }
 
 function PortfolioModel() {
-  const gltf = useLoader(GLTFLoader, '/ThreeJSPortfolioOptimized.glb', (loader) => {
+  const objects = useLoader(GLTFLoader, [
+      '/NonInteractables.glb', 
+      '/Noms.glb', 
+      '/AWExpress.glb', 
+      '/Sorter.glb', 
+      '/Pathfinder.glb',
+      '/Projektor.glb',
+      '/Lovbot.glb',
+      '/Blenz.glb'
+    ], (loader) => {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/draco-gltf/')
     loader.setDRACOLoader(dracoLoader)
   })
-  return <primitive object={gltf.scene}/>
+  return (
+    <>
+      {objects.map((object) => <primitive object={object.scene}/>)}
+    </>
+  )
 }
 
 export default function Home() {
