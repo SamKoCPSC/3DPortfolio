@@ -59,7 +59,7 @@ function PortfolioModel() {
 
 export default function Home() {
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    <div style={{ width: "100vw", height: "94.9vh" }}>
       <Canvas camera={{fov: 50}}>
         <Suspense fallback={null}>
           <ScrollControls pages={12}>
