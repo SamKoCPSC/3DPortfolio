@@ -62,7 +62,7 @@ export default function Home() {
     <div style={{ width: "100vw", height: "100vh" }}>
       <Canvas camera={{fov: 50}}>
         <Suspense fallback={null}>
-          <ScrollControls pages={8}>
+          <ScrollControls pages={12}>
             <CameraScroller/>
           </ScrollControls>
           {/* <OrbitControls/> */}
