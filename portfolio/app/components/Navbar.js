@@ -36,7 +36,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{background: 'linear-gradient(90deg, #A89E90 0%, #9FA6A0 100%)'}}>
+    <AppBar position="fixed" sx={{background: 'linear-gradient(90deg, #A89E90 0%, #9FA6A0 100%)'}}>
         <Toolbar disableGutters>
           <Typography
             sx={{
@@ -102,7 +102,7 @@ function Navbar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {}}
                 sx={{ marginX: 2, color: 'white', display: 'block', fontFamily: theme.typography.fontFamily, fontSize: '30px' }}
               >
                 {page}

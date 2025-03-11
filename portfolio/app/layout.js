@@ -1,5 +1,6 @@
+'use client'
 import { Caveat_Brush } from "next/font/google";
-import { ThemeProvider } from "@mui/material";
+import { Button, ThemeProvider } from "@mui/material";
 import theme from "./theme";
 import "./globals.css";
 import Navbar from './components/Navbar'
@@ -13,7 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={caveatBrush.className}>
-        <Navbar/>
         <ThemeProvider theme={theme}>
           {children}
         </ThemeProvider>
