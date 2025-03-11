@@ -28,7 +28,7 @@ const cameraPath = [
 
 let intervalCount = 0
 let isNavigating = false
-let navigateTo = 2
+let navigateTo = null
 
 function CameraScroller() {
   const scroll = useScroll()
@@ -54,12 +54,14 @@ function CameraNavigator() {
         isNavigating = false
       }
       const lerpFactor = easeInOutCubic(intervalCount/100)
-      camera.quaternion.slerpQuaternions(camera.quaternion, cameraPath[2].rotation, lerpFactor)
-      camera.position.lerpVectors(camera.position, cameraPath[2].position, lerpFactor)
+      camera.quaternion.slerpQuaternions(camera.quaternion, cameraPath[navigateTo].rotation, lerpFactor)
+      camera.position.lerpVectors(camera.position, cameraPath[navigateTo].position, lerpFactor)
       intervalCount += 1
-      scroll.el.scrollTop = scroll.el.scrollHeight/cameraPath.length * 2
+      // scroll.el.scrollTop = (scroll.el.scrollHeight/10)*navigateTo
+      const scrollContainer = scroll.el;
+      const totalScrollHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight; // Account for viewport height
+      scroll.el.scrollTop = (totalScrollHeight / (cameraPath.length - 1)) * navigateTo;
     }, 15)
-    
   }
   return null
 }
@@ -88,13 +90,14 @@ function PortfolioModel() {
 
 export default function Home() {
   const [triggerNavigator, setTriggerNavigator] = useState(false)
-  const handleNavigate = () => {
-    setTriggerNavigator(!triggerNavigator)
+  const handleNavigate = (destination) => {
+    navigateTo = destination
     isNavigating = true
+    setTriggerNavigator(!triggerNavigator)
   }
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Button sx={{position: 'fixed', zIndex: 1}} onClick={() => {handleNavigate()}}>scroll</Button>
+      <Navbar handleNavigate={handleNavigate}/>
       <Canvas camera={{fov: 50}}>
         <Suspense fallback={null}>
           <ScrollControls pages={cameraPath.length * 1.2}>

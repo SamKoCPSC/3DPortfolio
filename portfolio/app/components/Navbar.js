@@ -15,8 +15,9 @@ import MenuItem from '@mui/material/MenuItem';
 import theme from '../theme';
 
 const pages = ['Intro', 'About Me', 'Skills', 'Projects', 'Employment', 'Contact']
+const pagePathNums = [1, 2, 3, 5, 7, 9]
 
-function Navbar() {
+function Navbar({handleNavigate}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,15 +39,17 @@ function Navbar() {
   return (
     <AppBar position="fixed" sx={{background: 'linear-gradient(90deg, #A89E90 0%, #9FA6A0 100%)'}}>
         <Toolbar disableGutters>
-          <Typography
+          <Button
             sx={{
               fontFamily: theme.typography.fontFamily,
-              fontSize: '30px',
-              marginLeft: '20px'
+              fontSize: '35px',
+              marginLeft: '20px',
+              color: 'white'
             }}
+            onClick={() => {handleNavigate(0)}}
           >
             Sam Ko
-          </Typography>
+          </Button>
           {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -99,10 +102,10 @@ function Navbar() {
             Sam Ko
           </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
                 key={page}
-                onClick={() => {}}
+                onClick={() => {handleNavigate(pagePathNums[index])}}
                 sx={{ marginX: 2, color: 'white', display: 'block', fontFamily: theme.typography.fontFamily, fontSize: '30px' }}
               >
                 {page}
