@@ -7,9 +7,10 @@ import { Canvas, useLoader, useFrame, useThree } from "@react-three/fiber"
 import { useEffect, Suspense } from "react"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
-import { OrbitControls, PerspectiveCamera, ScrollControls, useScroll, Scroll, Html } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera, ScrollControls, useScroll, Html } from '@react-three/drei'
 import * as THREE from "three"
 import Navbar from "./components/Navbar"
+import Modal from "./components/Modal"
 
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -98,6 +99,7 @@ export default function Home() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Navbar handleNavigate={handleNavigate}/>
+      <Modal open={true}/>
       <Canvas camera={{fov: 50}}>
         <Suspense fallback={null}>
           <ScrollControls pages={cameraPath.length * 1.2}>

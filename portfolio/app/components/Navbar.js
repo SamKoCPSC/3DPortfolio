@@ -37,7 +37,7 @@ function Navbar({handleNavigate}) {
   };
 
   return (
-    <AppBar position="fixed" sx={{background: 'linear-gradient(90deg, #A89E90 0%, #9FA6A0 100%)'}}>
+    <AppBar position="fixed" sx={{background: 'linear-gradient(90deg, #A89E90 0%, #9FA6A0 100%)', height: '60px'}}>
         <Toolbar disableGutters>
           <Button
             sx={{
