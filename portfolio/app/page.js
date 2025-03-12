@@ -67,6 +67,17 @@ function CameraNavigator() {
   return null
 }
 
+const onClickEvents = [
+  () => {console.log('room')},
+  () => {window.open('https://google.com', '_blank')},
+  () => {console.log('awexpress')},
+  () => {console.log('sorter')},
+  () => {console.log('pathfinder')},
+  () => {console.log('projektor')},
+  () => {console.log('lovbot')},
+  () => {console.log('blenz')},
+]
+
 function PortfolioModel() {
   const objects = useLoader(GLTFLoader, [
       '/NonInteractables.glb', 
@@ -84,22 +95,27 @@ function PortfolioModel() {
   })
   return (
     <>
-      {objects.map((object, index) => <primitive key={index} object={object.scene}/>)}
+      {objects.map((object, index) => <primitive key={index} object={object.scene} onClick={onClickEvents[index]}/>)}
     </>
   )
 }
 
 export default function Home() {
   const [triggerNavigator, setTriggerNavigator] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState({welcome: true})
   const handleNavigate = (destination) => {
     navigateTo = destination
     isNavigating = true
     setTriggerNavigator(!triggerNavigator)
   }
+  const handleModalOpen = (modalName, isOpen) => {
+    const newObj = {...isModalOpen}
+    newObj[modalName] = isOpen
+    setIsModalOpen(newObj)
+  }
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Navbar handleNavigate={handleNavigate}/>
-      <Modal open={true}/>
       <Canvas camera={{fov: 50}}>
         <Suspense fallback={null}>
           <ScrollControls pages={cameraPath.length * 1.2}>
@@ -110,6 +126,11 @@ export default function Home() {
           <PortfolioModel/>
         </Suspense>
       </Canvas>
+      <Modal open={isModalOpen.welcome} setOpen={(isOpen) =>{handleModalOpen('welcome', isOpen)}} width={1000} height={500}>
+        <Typography sx={{fontSize: '3.5rem', marginBottom: '30px'}}>Hi there! Welcome to my Portfolio</Typography>
+        <Typography sx={{fontSize: '2rem', marginBottom: '20px'}}>This is a fun project I created to showcase some of my work and introduce some things about myself</Typography>
+        <Typography sx={{fontSize: '2rem'}}>To navigate through the scene, simply scroll up and down, or use the navigation bar at the top of the page</Typography>
+      </Modal>
     </div>
   )
 }
