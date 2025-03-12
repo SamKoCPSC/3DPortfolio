@@ -67,18 +67,7 @@ function CameraNavigator() {
   return null
 }
 
-const onClickEvents = [
-  () => {console.log('room')},
-  () => {window.open('https://google.com', '_blank')},
-  () => {console.log('awexpress')},
-  () => {console.log('sorter')},
-  () => {console.log('pathfinder')},
-  () => {console.log('projektor')},
-  () => {console.log('lovbot')},
-  () => {console.log('blenz')},
-]
-
-function PortfolioModel() {
+function PortfolioModel({onClickEvents}) {
   const objects = useLoader(GLTFLoader, [
       '/NonInteractables.glb', 
       '/Noms.glb', 
@@ -102,7 +91,16 @@ function PortfolioModel() {
 
 export default function Home() {
   const [triggerNavigator, setTriggerNavigator] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState({welcome: true})
+  const [isModalOpen, setIsModalOpen] = useState({
+    welcome: true,
+    noms: false,
+    awexpress: false,
+    sorter: false,
+    pathfinder: false,
+    projektor: false,
+    lovbot: false,
+    blenz: false,
+  })
   const handleNavigate = (destination) => {
     navigateTo = destination
     isNavigating = true
@@ -113,6 +111,16 @@ export default function Home() {
     newObj[modalName] = isOpen
     setIsModalOpen(newObj)
   }
+  const onClickEvents = [
+    () => {},
+    () => {handleModalOpen('noms', true)},
+    () => {handleModalOpen('awexpress', true)},
+    () => {handleModalOpen('sorter', true)},
+    () => {handleModalOpen('pathfinder', true)},
+    () => {handleModalOpen('projektor', true)},
+    () => {handleModalOpen('lovbot', true)},
+    () => {handleModalOpen('blenz', true)},
+  ]
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Navbar handleNavigate={handleNavigate}/>
@@ -123,13 +131,19 @@ export default function Home() {
             <CameraScroller/>
           </ScrollControls>
           <ambientLight/>
-          <PortfolioModel/>
+          <PortfolioModel onClickEvents={onClickEvents}/>
         </Suspense>
       </Canvas>
       <Modal open={isModalOpen.welcome} setOpen={(isOpen) =>{handleModalOpen('welcome', isOpen)}} width={1000} height={500}>
         <Typography sx={{fontSize: '3.5rem', marginBottom: '30px'}}>Hi there! Welcome to my Portfolio</Typography>
         <Typography sx={{fontSize: '2rem', marginBottom: '20px'}}>This is a fun project I created to showcase some of my work and introduce some things about myself</Typography>
         <Typography sx={{fontSize: '2rem'}}>To navigate through the scene, simply scroll up and down, or use the navigation bar at the top of the page</Typography>
+      </Modal>
+      <Modal open={isModalOpen.noms} setOpen={(isOpen) => {handleModalOpen('noms', isOpen)}} width={1000} height={500}>
+        <Typography>Noms</Typography>
+      </Modal>
+      <Modal open={isModalOpen.awexpress} setOpen={(isOpen) => {handleModalOpen('awexpress', isOpen)}} width={1000} height={500}>
+        <Typography>AWExpress</Typography>
       </Modal>
     </div>
   )
