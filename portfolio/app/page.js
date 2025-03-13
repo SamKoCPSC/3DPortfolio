@@ -49,42 +49,46 @@ function CameraNavigator() {
   const camera = useThree(state => state.camera)
   if(isNavigating) {
     let interval = setInterval(() => {
-      if(intervalCount === 100) {
+      if(intervalCount === 150) {
         clearInterval(interval)
         intervalCount = 0
         isNavigating = false
       }
-      const lerpFactor = easeInOutCubic(intervalCount/100)
+      const lerpFactor = easeInOutCubic(intervalCount/150)
       camera.quaternion.slerpQuaternions(camera.quaternion, cameraPath[navigateTo].rotation, lerpFactor)
       camera.position.lerpVectors(camera.position, cameraPath[navigateTo].position, lerpFactor)
       intervalCount += 1
-      // scroll.el.scrollTop = (scroll.el.scrollHeight/10)*navigateTo
       const scrollContainer = scroll.el;
       const totalScrollHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight; // Account for viewport height
       scroll.el.scrollTop = (totalScrollHeight / (cameraPath.length - 1)) * navigateTo;
-    }, 15)
+    }, 10)
   }
   return null
 }
 
+const modelList = [
+  'NonInteractables', 
+  'Noms', 
+  'AWExpress', 
+  'Sorter', 
+  'Pathfinder',
+  'Projektor',
+  'Lovbot',
+  'Blenz'
+] 
+
+
 function PortfolioModel({onClickEvents}) {
-  const objects = useLoader(GLTFLoader, [
-      '/NonInteractables.glb', 
-      '/Noms.glb', 
-      '/AWExpress.glb', 
-      '/Sorter.glb', 
-      '/Pathfinder.glb',
-      '/Projektor.glb',
-      '/Lovbot.glb',
-      '/Blenz.glb'
-    ], (loader) => {
+  const objects = useLoader(GLTFLoader, modelList.map((model) => {
+    return `/${model}.glb`
+  }), (loader) => {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/draco-gltf/')
     loader.setDRACOLoader(dracoLoader)
   })
   return (
     <>
-      {objects.map((object, index) => <primitive key={index} object={object.scene} onClick={onClickEvents[index]}/>)}
+      {objects.map((object, index) => <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {console.log('hovering')}}/>)}
     </>
   )
 }
@@ -92,14 +96,14 @@ function PortfolioModel({onClickEvents}) {
 export default function Home() {
   const [triggerNavigator, setTriggerNavigator] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState({
-    welcome: true,
-    noms: false,
-    awexpress: false,
-    sorter: false,
-    pathfinder: false,
-    projektor: false,
-    lovbot: false,
-    blenz: false,
+    Welcome: true,
+    Noms: false,
+    AWExpress: false,
+    Sorter: false,
+    Pathfinder: false,
+    Projektor: false,
+    Lovbot: false,
+    Blenz: false
   })
   const handleNavigate = (destination) => {
     navigateTo = destination
@@ -113,13 +117,13 @@ export default function Home() {
   }
   const onClickEvents = [
     () => {},
-    () => {handleModalOpen('noms', true)},
-    () => {handleModalOpen('awexpress', true)},
-    () => {handleModalOpen('sorter', true)},
-    () => {handleModalOpen('pathfinder', true)},
-    () => {handleModalOpen('projektor', true)},
-    () => {handleModalOpen('lovbot', true)},
-    () => {handleModalOpen('blenz', true)},
+    () => {handleModalOpen('Noms', true)},
+    () => {handleModalOpen('AWExpress', true)},
+    () => {handleModalOpen('Sorter', true)},
+    () => {handleModalOpen('Pathfinder', true)},
+    () => {handleModalOpen('Projektor', true)},
+    () => {handleModalOpen('Lovbot', true)},
+    () => {handleModalOpen('Blenz', true)},
   ]
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
@@ -134,16 +138,31 @@ export default function Home() {
           <PortfolioModel onClickEvents={onClickEvents}/>
         </Suspense>
       </Canvas>
-      <Modal open={isModalOpen.welcome} setOpen={(isOpen) =>{handleModalOpen('welcome', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Welcome} setOpen={(isOpen) =>{handleModalOpen('Welcome', isOpen)}} width={1000} height={500}>
         <Typography sx={{fontSize: '3.5rem', marginBottom: '30px'}}>Hi there! Welcome to my Portfolio</Typography>
         <Typography sx={{fontSize: '2rem', marginBottom: '20px'}}>This is a fun project I created to showcase some of my work and introduce some things about myself</Typography>
         <Typography sx={{fontSize: '2rem'}}>To navigate through the scene, simply scroll up and down, or use the navigation bar at the top of the page</Typography>
       </Modal>
-      <Modal open={isModalOpen.noms} setOpen={(isOpen) => {handleModalOpen('noms', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Noms} setOpen={(isOpen) => {handleModalOpen('Noms', isOpen)}} width={1000} height={500}>
         <Typography>Noms</Typography>
       </Modal>
-      <Modal open={isModalOpen.awexpress} setOpen={(isOpen) => {handleModalOpen('awexpress', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.AWExpress} setOpen={(isOpen) => {handleModalOpen('AWExpress', isOpen)}} width={1000} height={500}>
         <Typography>AWExpress</Typography>
+      </Modal>
+      <Modal open={isModalOpen.Sorter} setOpen={(isOpen) => {handleModalOpen('Sorter', isOpen)}} width={1000} height={500}>
+        <Typography>Sorter</Typography>
+      </Modal>
+      <Modal open={isModalOpen.Pathfinder} setOpen={(isOpen) => {handleModalOpen('Pathfinder', isOpen)}} width={1000} height={500}>
+        <Typography>Pathfinder</Typography>
+      </Modal>
+      <Modal open={isModalOpen.Projektor} setOpen={(isOpen) => {handleModalOpen('Projektor', isOpen)}} width={1000} height={500}>
+        <Typography>Projektor</Typography>
+      </Modal>
+      <Modal open={isModalOpen.Lovbot} setOpen={(isOpen) => {handleModalOpen('Lovbot', isOpen)}} width={1000} height={500}>
+        <Typography>Lovbot</Typography>
+      </Modal>
+      <Modal open={isModalOpen.Blenz} setOpen={(isOpen) => {handleModalOpen('Blenz', isOpen)}} width={1000} height={500}>
+        <Typography>Blenz</Typography>
       </Modal>
     </div>
   )
