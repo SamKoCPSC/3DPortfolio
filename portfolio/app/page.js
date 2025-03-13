@@ -2,7 +2,7 @@
 import { useState } from "react"
 import dynamic from "next/dynamic"
 import styles from "./page.module.css"
-import { Button, Typography } from "@mui/material"
+import { Button, Typography, Box } from "@mui/material"
 import { Canvas, useLoader, useFrame, useThree } from "@react-three/fiber"
 import { useEffect, Suspense } from "react"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -11,6 +11,7 @@ import { OrbitControls, PerspectiveCamera, ScrollControls, useScroll, Html } fro
 import * as THREE from "three"
 import Navbar from "./components/Navbar"
 import Modal from "./components/Modal"
+import Carousel from "./components/Carousel"
 
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -143,8 +144,25 @@ export default function Home() {
         <Typography sx={{fontSize: '2rem', marginBottom: '20px'}}>This is a fun project I created to showcase some of my work and introduce some things about myself</Typography>
         <Typography sx={{fontSize: '2rem'}}>To navigate through the scene, simply scroll up and down, or use the navigation bar at the top of the page</Typography>
       </Modal>
-      <Modal open={isModalOpen.Noms} setOpen={(isOpen) => {handleModalOpen('Noms', isOpen)}} width={1000} height={500}>
-        <Typography>Noms</Typography>
+      <Modal open={isModalOpen.Noms} setOpen={(isOpen) => {handleModalOpen('Noms', isOpen)}} width={1000} height={1000}>
+        <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Noms - Recipe Management App</Typography>
+        <Carousel slidesPerView={1} height={500} slides={['NomsHome1.png', 'NomsHome2.png', 'NomsCreate1.png', 'NomsRecipe1.png', 'NomsRecipe2.png', 'NomsBranch1.png'].map((imageURL) => {
+            return (
+              <Box 
+                component={'img'}
+                alt="image"
+                src={imageURL}
+                height='90%'
+              />
+            )
+          }
+        )}
+        />
+        <Typography sx={{fontSize: '1.5rem'}}>
+          Noms is a full-stack application designed to help cooks develop, manage, and share recipes. As a cooking enthusiast myself I found that I often didn't
+          have a convenient place to store recipes, and in addition I found that as I adjusted recipes over time, I didn't have to good way to track what changes
+          I was making and how they affected the final result.          
+        </Typography>
       </Modal>
       <Modal open={isModalOpen.AWExpress} setOpen={(isOpen) => {handleModalOpen('AWExpress', isOpen)}} width={1000} height={500}>
         <Typography>AWExpress</Typography>
