@@ -166,12 +166,25 @@ export default function Home() {
             I was making and how they affected the final result. <br/><br/>
             Inspired by GitHub's version control system, I wanted to create a similar system that would make recipe development more convenient, allowing users to iterate 
             on their own and other's existing recipes while keeping a record of what changes have been made overtime. <b>Noms</b> supports a branching system, where on top of 
-            being able to create new versions, you can also create new variations. Overtime, different users may create branches off of other branches resulting in a recipe tree. <br/><br/>
+            being able to create new versions, you can also create new variations. Overtime, different users may create branches off of other branches resulting in a recipe tree. <br/>
             <h2>Technologies</h2>
             <b>Noms</b> was developed with NextJS 14 and AWS services such as Lambda, RDS, S3, API Gateway, and Amplify. The frontend UI is implemented using MaterialUI, and most 
             of the backend logic such as data validation, authentication, and processing is implemented within NextJS's API Routes. For better security, a Python lambda function triggered via API Gateway 
-            is used to connect to a PostgresQL RDS instance to minimize the risk of exposing the database. <b/><b/>
+            is used to connect to a PostgresQL RDS instance to minimize the risk of exposing the database publicly. Authentication is handled with Google OAuth and NextAuth.js<b/><b/>
             <h2>Challenges</h2>
+            As this was the first experience I had managing my own AWS account, it took some time to learn how to properly set up the various AWS services I would need, for example setting up
+            the bucket policies for S3, triggering Lambda via API Gateway, configuring my .yml file when deploying on Amplify etc. In particular, configuring Amplify to deploy a NextJS app was 
+            quite tricky as it's not immediately obvious you have to use the CloudShell terminal to manually change the WEB_COMPUTE value in Amplify, which took a bit of Googling to eventually 
+            figure out.<br/><br/>
+            This was also my first time setting up a database myself. As I knew the app would require a lot of relational data, I figured that RDS would be appropriate. I also wanted to take my 
+            time on the database's architecture as I knew some good planning would mitigate the need to rearrange large amounts of data in the future. Creating an RDS instance 
+            was relatively simple, and I used the DBeaver SQL client to connect. I had to learn the basics of relational databases and SQL, for example, familiarizing myself with SQL syntax, 
+            learning how tables, rows, and columns worked, understanding normalization etc.<br/><br/>
+            Constructing SQL queries turned out to be more complicated than I thought. One complication was my design for storing ingredient data for recipes. A future feature I anticipated was 
+            searching for recipes based on specific ingredients, and I realized that simply storing ingredient data as an array would be inefficient. As recipes might be related through ingredients 
+            I created an ingredients table. As such when a new recipe is created, I would potentially also need to create new rows for ingredients while preventing duplicates, and when recipes are 
+            requested I would need to join the ingredient data with recipe data. This complicated the SQL queries significantly, and I had to learn how to use Common Table Expressions to handle more 
+            complicated queries.
           </Typography>
         </Box>
       </Modal>
