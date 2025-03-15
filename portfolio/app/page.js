@@ -171,7 +171,7 @@ export default function Home() {
             being able to create new versions, you can also create new variations. Overtime, different users may create branches off of other branches resulting in a recipe tree. <br/>
             <h2>Technologies</h2>
             <b>Noms</b> was developed with NextJS 14 and AWS services such as Lambda, RDS, S3, API Gateway, and Amplify. The frontend UI is implemented using MaterialUI, and most 
-            of the backend logic such as data validation, authentication, and processing is implemented within NextJS's API Routes. For better security, a Python lambda function triggered via API Gateway 
+            of the backend logic such as data validation, authentication, and processing is implemented within NextJS's API Routes. For better security, a Python 3 lambda function triggered via API Gateway 
             is used to connect to a PostgresQL RDS instance to minimize the risk of exposing the database publicly. Authentication is handled with Google OAuth and NextAuth.js<b/><b/>
             <h2>Challenges</h2>
             As this was the first experience I had managing my own AWS account, it took some time to learn how to properly set up the various AWS services I would need, for example setting up
@@ -207,23 +207,85 @@ export default function Home() {
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
             <h2>Description</h2>
-            
+            <b>AWExpress</b> was a team project I created with a group of 7 for a project-based Software Engineering class at UBC. We were given a set of requirmented features for a marketplace app 
+            at the beginning of the course, and we were allowed to make our own decisions on implementation. To simulate a more realistic experience, the teaching staff would act as stakeholders for 
+            the project, requiring documentation, and imposing intermediate deadlines for certain features, approving them as they were implemented.<br/><br/>
+            The app was designed as a marketplace where invdividuals would be able to buy and sell items from other individuals. Features included, order tracking, email notifications, admin moderation 
+            tools, mobile responsive UI, and advanced search filtering. As one of the more experienced developers on the team, I was invovlved with both frontend and backend work. I was in charge of 
+            desgining most of the frontend UI, and most of the core backend APIs.
+            <h2>Technologies</h2>
+            <b>AWExpress</b> was developed with NextJS 13 and AWS services such as Lambda, Step Functions, RDS, S3, API Gateway, and Amplify. We also used MaterialUI as our UI component library, Redux for state management, 
+            and NextAuth.js and Google OAuth for authentication. We utilized a MySQL database connected via Lambda and API Gateway. Most of the backend logic was implemented with Python 3 within several 
+            Lambda functions.
+            <h2>Challenges</h2>
+            As this was many of our first experiences working with a relatively large team of other developers, communication was one of the key components of success. By communicating with each other 
+            effectively, the team was able to meet deadlines efficiently by properly prioritizing and distributing the workload. We regularly scheduled out-of-class meetings, both in-person and online, and 
+            regularly updated each other on progress. With this strategy, every team member was able to clearly identify what needed to be done, and the team was able to reduce the amount of time fixing 
+            bugs and adapting to unexpected challenges.<br/><br/>
+            This was my first experience working on a full-stack application. Prior to this project, although I had previous experience with React, I had not worked with NextJS, AWS, or databases. NextJS was 
+            relatively intuitive, as it was a React framework, but I had to take some time to learn about some of NextJS's features such as file routing, pages API system, and client vs server rendering. 
+            Although challenging I was able to learn the core concepts of NextJS quickly. <br/><br/>
+            This was also my first experience using a cloud computing service such as AWS. For this project, I primarily worked with and learned about Lambda. At first I wasn't sure what so-called severless 
+            functions were about, but as I learned more I understood the advantages, and was able to seemlessly integrate our Lambda APIs into our project.<br/><br/>
+            SQL was another challenge. Prior to this project, I didn't have experience in relational databases, and as one of the team's main backend developers, I had to quickly learn about the fundamentals.
+            At first database architecture seemed unintuitive, but as I practiced writing SQL queries, and as I learned more about relational databases, I understood the advantages in organizing data 
+            in a relational structure.
           </Typography>
         </Box>
       </Modal>
-      <Modal open={isModalOpen.Sorter} setOpen={(isOpen) => {handleModalOpen('Sorter', isOpen)}} width={1000} height={500}>
-        <Typography>Sorter</Typography>
+      <Modal open={isModalOpen.Sorter} setOpen={(isOpen) => {handleModalOpen('Sorter', isOpen)}} width={1000} height={1200}>
+        <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Sorting Visualizer</Typography>
+        <Carousel slidesPerView={1} height={500} slides={['AWExpress/Home1.png', 'AWExpress/Search1.png', 'AWExpress/Product1.png', 'AWExpress/Create1.png', 'AWExpress/Cart1.png', 'AWExpress/Cart2.png', 'AWExpress/Checkout1.png', 'AWExpress/Success1.png', 'AWExpress/Account1.png'].map((imageURL) => {
+            return (
+              <Box 
+                component={'img'}
+                alt="image"
+                src={imageURL}
+                height='90%'
+              />
+            )
+          }
+        )}
+        />
+        <Box sx={{height: 475, overflow: 'auto'}}>
+          <Typography sx={{fontSize: '1.5rem'}}>
+            <h2>Description</h2>
+            <b>AWExpress</b> was a team project I created with a group of 7 for a project-based Software Engineering class at UBC. We were given a set of requirmented features for a marketplace app 
+            at the beginning of the course, and we were allowed to make our own decisions on implementation. To simulate a more realistic experience, the teaching staff would act as stakeholders for 
+            the project, requiring documentation, and imposing intermediate deadlines for certain features, approving them as they were implemented.<br/><br/>
+            The app was designed as a marketplace where invdividuals would be able to buy and sell items from other individuals. Features included, order tracking, email notifications, admin moderation 
+            tools, mobile responsive UI, and advanced search filtering. As one of the more experienced developers on the team, I was invovlved with both frontend and backend work. I was in charge of 
+            desgining most of the frontend UI, and most of the core backend APIs.
+            <h2>Technologies</h2>
+            <b>AWExpress</b> was developed with NextJS 13 and AWS services such as Lambda, Step Functions, RDS, S3, API Gateway, and Amplify. We also used MaterialUI as our UI component library, Redux for state management, 
+            and NextAuth.js and Google OAuth for authentication. We utilized a MySQL database connected via Lambda and API Gateway. Most of the backend logic was implemented with Python 3 within several 
+            Lambda functions.
+            <h2>Challenges</h2>
+            As this was many of our first experiences working with a relatively large team of other developers, communication was one of the key components of success. By communicating with each other 
+            effectively, the team was able to meet deadlines efficiently by properly prioritizing and distributing the workload. We regularly scheduled out-of-class meetings, both in-person and online, and 
+            regularly updated each other on progress. With this strategy, every team member was able to clearly identify what needed to be done, and the team was able to reduce the amount of time fixing 
+            bugs and adapting to unexpected challenges.<br/><br/>
+            This was my first experience working on a full-stack application. Prior to this project, although I had previous experience with React, I had not worked with NextJS, AWS, or databases. NextJS was 
+            relatively intuitive, as it was a React framework, but I had to take some time to learn about some of NextJS's features such as file routing, pages API system, and client vs server rendering. 
+            Although challenging I was able to learn the core concepts of NextJS quickly. <br/><br/>
+            This was also my first experience using a cloud computing service such as AWS. For this project, I primarily worked with and learned about Lambda. At first I wasn't sure what so-called severless 
+            functions were about, but as I learned more I understood the advantages, and was able to seemlessly integrate our Lambda APIs into our project.<br/><br/>
+            SQL was another challenge. Prior to this project, I didn't have experience in relational databases, and as one of the team's main backend developers, I had to quickly learn about the fundamentals.
+            At first database architecture seemed unintuitive, but as I practiced writing SQL queries, and as I learned more about relational databases, I understood the advantages in organizing data 
+            in a relational structure.
+          </Typography>
+        </Box>
       </Modal>
-      <Modal open={isModalOpen.Pathfinder} setOpen={(isOpen) => {handleModalOpen('Pathfinder', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Pathfinder} setOpen={(isOpen) => {handleModalOpen('Pathfinder', isOpen)}} width={1000} height={1200}>
         <Typography>Pathfinder</Typography>
       </Modal>
-      <Modal open={isModalOpen.Projektor} setOpen={(isOpen) => {handleModalOpen('Projektor', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Projektor} setOpen={(isOpen) => {handleModalOpen('Projektor', isOpen)}} width={1000} height={1200}>
         <Typography>Projektor</Typography>
       </Modal>
-      <Modal open={isModalOpen.Lovbot} setOpen={(isOpen) => {handleModalOpen('Lovbot', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Lovbot} setOpen={(isOpen) => {handleModalOpen('Lovbot', isOpen)}} width={1000} height={1200}>
         <Typography>Lovbot</Typography>
       </Modal>
-      <Modal open={isModalOpen.Blenz} setOpen={(isOpen) => {handleModalOpen('Blenz', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Blenz} setOpen={(isOpen) => {handleModalOpen('Blenz', isOpen)}} width={1000} height={1200}>
         <Typography>Blenz</Typography>
       </Modal>
     </div>
