@@ -152,13 +152,7 @@ export default function Home() {
             <CameraScroller/>
           </ScrollControls>
           <ambientLight/>
-          {objects.map((object, index) => {
-            return (
-              <>
-                <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {setOutlined(objects[index].scene.children)}}/>
-              </>
-            )
-          })}
+          {objects.map((object, index) => {return <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={()=>{setOutlined(objects[index].scene.children)}} onPointerLeave={()=>{setOutlined([])}}/>})}
           <EffectComposer autoClear={false}>
             <Outline
               selection={outlined}
