@@ -68,41 +68,17 @@ function CameraNavigator() {
   return null
 }
 
-const modelList = [
-  'NonInteractables', 
-  'Noms', 
-  'AWExpress', 
-  'Sorter', 
-  'Pathfinder',
-  'Projektor',
-  'Lovbot',
-  'Blenz'
-] 
-
-
-function PortfolioModel({onClickEvents, refs}) {
-  const objects = useLoader(GLTFLoader, modelList.map((model) => {
-    return `/${model}.glb`
-  }), (loader) => {
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/draco-gltf/')
-    loader.setDRACOLoader(dracoLoader)
-  })
-  return (
-    <>
-      {objects.map((object, index) => {
-        return (
-          <>
-            <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {}}/>
-          </>
-        )
-        // return <primitive ref={refs.current[0]} key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {}}/>
-      })}
-    </>
-  )
-}
-
 export default function Home() {
+  const modelList = [
+    'NonInteractables', 
+    'Noms', 
+    'AWExpress', 
+    'Sorter', 
+    'Pathfinder',
+    'Projektor',
+    'Lovbot',
+    'Blenz'
+  ] 
   const objects = useLoader(GLTFLoader, modelList.map((model) => {
     return `/${model}.glb`
   }), (loader) => {
@@ -172,7 +148,7 @@ export default function Home() {
       </Modal>
       <Modal open={isModalOpen.Noms} setOpen={(isOpen) => {handleModalOpen('Noms', isOpen)}} width={1000} height={1200}>
         <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Noms - Recipe Management App</Typography>
-        <Carousel slidesPerView={1} height={500} slides={['NomsHome1.png', 'NomsHome2.png', 'NomsCreate1.png', 'NomsRecipe1.png', 'NomsRecipe2.png', 'NomsBranch1.png'].map((imageURL) => {
+        <Carousel slidesPerView={1} height={500} slides={['Noms/Home1.png', 'Noms/Home2.png', 'Noms/Create1.png', 'Noms/Recipe1.png', 'Noms/Recipe2.png', 'Noms/Branch1.png'].map((imageURL) => {
             return (
               <Box 
                 component={'img'}
@@ -214,8 +190,26 @@ export default function Home() {
           </Typography>
         </Box>
       </Modal>
-      <Modal open={isModalOpen.AWExpress} setOpen={(isOpen) => {handleModalOpen('AWExpress', isOpen)}} width={1000} height={500}>
-        <Typography>AWExpress</Typography>
+      <Modal open={isModalOpen.AWExpress} setOpen={(isOpen) => {handleModalOpen('AWExpress', isOpen)}} width={1000} height={1200}>
+        <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>AWExpress - Marketplace Platform</Typography>
+        <Carousel slidesPerView={1} height={500} slides={['AWExpress/Home1.png', 'AWExpress/Search1.png', 'AWExpress/Product1.png', 'AWExpress/Create1.png', 'AWExpress/Cart1.png', 'AWExpress/Cart2.png', 'AWExpress/Checkout1.png', 'AWExpress/Success1.png', 'AWExpress/Account1.png'].map((imageURL) => {
+            return (
+              <Box 
+                component={'img'}
+                alt="image"
+                src={imageURL}
+                height='90%'
+              />
+            )
+          }
+        )}
+        />
+        <Box sx={{height: 475, overflow: 'auto'}}>
+          <Typography sx={{fontSize: '1.5rem'}}>
+            <h2>Description</h2>
+            
+          </Typography>
+        </Box>
       </Modal>
       <Modal open={isModalOpen.Sorter} setOpen={(isOpen) => {handleModalOpen('Sorter', isOpen)}} width={1000} height={500}>
         <Typography>Sorter</Typography>
