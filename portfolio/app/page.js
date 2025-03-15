@@ -1,9 +1,10 @@
 'use client'
-import { useState } from "react"
+import { useRef, useState, createRef } from "react"
 import dynamic from "next/dynamic"
 import styles from "./page.module.css"
 import { Button, Typography, Box } from "@mui/material"
 import { Canvas, useLoader, useFrame, useThree } from "@react-three/fiber"
+import { EffectComposer, Outline } from "@react-three/postprocessing"
 import { useEffect, Suspense } from "react"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
@@ -79,7 +80,7 @@ const modelList = [
 ] 
 
 
-function PortfolioModel({onClickEvents}) {
+function PortfolioModel({onClickEvents, refs}) {
   const objects = useLoader(GLTFLoader, modelList.map((model) => {
     return `/${model}.glb`
   }), (loader) => {
@@ -89,12 +90,27 @@ function PortfolioModel({onClickEvents}) {
   })
   return (
     <>
-      {objects.map((object, index) => <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {console.log('hovering')}}/>)}
+      {objects.map((object, index) => {
+        return (
+          <>
+            <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {}}/>
+          </>
+        )
+        // return <primitive ref={refs.current[0]} key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {}}/>
+      })}
     </>
   )
 }
 
 export default function Home() {
+  const objects = useLoader(GLTFLoader, modelList.map((model) => {
+    return `/${model}.glb`
+  }), (loader) => {
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/draco-gltf/')
+    loader.setDRACOLoader(dracoLoader)
+  })
+  const [outlined, setOutlined] = useState([])
   const [triggerNavigator, setTriggerNavigator] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState({
     Welcome: true,
@@ -136,7 +152,23 @@ export default function Home() {
             <CameraScroller/>
           </ScrollControls>
           <ambientLight/>
-          <PortfolioModel onClickEvents={onClickEvents}/>
+          {objects.map((object, index) => {
+            return (
+              <>
+                <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={() => {setOutlined(objects[index].scene.children)}}/>
+              </>
+            )
+          })}
+          <EffectComposer autoClear={false}>
+            <Outline
+              selection={outlined}
+              blur={true}
+              xRay={false}
+              pulseSpeed={0.2}
+              edgeStrength={3}
+              visibleEdgeColor={'white'}
+            />
+          </EffectComposer>
         </Suspense>
       </Canvas>
       <Modal open={isModalOpen.Welcome} setOpen={(isOpen) =>{handleModalOpen('Welcome', isOpen)}} width={1000} height={500}>
