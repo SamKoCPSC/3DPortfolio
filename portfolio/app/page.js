@@ -257,7 +257,10 @@ export default function Home() {
             <b>The Sorting Visualizer</b> only used <b>React 16</b>. All of the algorithms run client-side, and the app doesn't store any information between sessions. The algorithms are implemented from 
             scratch in JavaScript without any other libraries. 
             <h2>Challenges</h2>
-            As this was my first time using React, the primary challenge learning about and implementing the fundamentals, such as understanding state and props.
+            As this was my first time using React, the primary challenge learning about and implementing the fundamentals, such as understanding components, state and props, JSX etc. In partciular, state and 
+            props were concepts that were very different from coding in pure JavaScript where the DOM is directly manipulated to create visualizations.<br/><br/>
+            Another challenge was the implementation of the various algorithms. The O(nlogn) algorithms, Quick Sort, Merge Sort, and Heap Sort were, as one would expect, more complex than the more basic algorithms 
+            such as Selection Sort, and required quite a bit of thinking to understand how they worked.
           </Typography>
         </Box>
       </Modal>
