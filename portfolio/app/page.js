@@ -170,9 +170,9 @@ export default function Home() {
             on their own and other's existing recipes while keeping a record of what changes have been made overtime. <b>Noms</b> supports a branching system, where on top of 
             being able to create new versions, you can also create new variations. Overtime, different users may create branches off of other branches resulting in a recipe tree. <br/>
             <h2>Technologies</h2>
-            <b>Noms</b> was developed with NextJS 14 and AWS services such as Lambda, RDS, S3, API Gateway, and Amplify. The frontend UI is implemented using MaterialUI, and most 
-            of the backend logic such as data validation, authentication, and processing is implemented within NextJS's API Routes. For better security, a Python 3 lambda function triggered via API Gateway 
-            is used to connect to a PostgresQL RDS instance to minimize the risk of exposing the database publicly. Authentication is handled with Google OAuth and NextAuth.js<b/><b/>
+            <b>Noms</b> was developed with <b>NextJS 14</b> and <b>AWS</b> services such as Lambda, RDS, S3, API Gateway, and Amplify. The frontend UI is implemented using MaterialUI, and most 
+            of the backend logic such as data validation, authentication, and processing is implemented within NextJS's API Routes. For better security, a <b>Python 3</b> lambda function triggered via API Gateway 
+            is used to connect to a <b>PostgreSQL</b> RDS instance to minimize the risk of exposing the database publicly. Authentication is handled with Google OAuth and NextAuth.js<b/><b/>
             <h2>Challenges</h2>
             As this was the first experience I had managing my own AWS account, it took some time to learn how to properly set up the various AWS services I would need, for example setting up
             the bucket policies for S3, triggering Lambda via API Gateway, configuring my .yml file when deploying on Amplify etc. In particular, configuring Amplify to deploy a NextJS app was 
@@ -214,8 +214,8 @@ export default function Home() {
             tools, mobile responsive UI, and advanced search filtering. As one of the more experienced developers on the team, I was invovlved with both frontend and backend work. I was in charge of 
             desgining most of the frontend UI, and most of the core backend APIs.
             <h2>Technologies</h2>
-            <b>AWExpress</b> was developed with NextJS 13 and AWS services such as Lambda, Step Functions, RDS, S3, API Gateway, and Amplify. We also used MaterialUI as our UI component library, Redux for state management, 
-            and NextAuth.js and Google OAuth for authentication. We utilized a MySQL database connected via Lambda and API Gateway. Most of the backend logic was implemented with Python 3 within several 
+            <b>AWExpress</b> was developed with <b>NextJS 13</b> and <b>AWS</b> services such as Lambda, Step Functions, RDS, S3, API Gateway, and Amplify. We also used MaterialUI as our UI component library, Redux for state management, 
+            and NextAuth.js and Google OAuth for authentication. We utilized a <b>MySQL</b> database connected via Lambda and API Gateway. Most of the backend logic was implemented with <b>Python 3</b> within several 
             Lambda functions.
             <h2>Challenges</h2>
             As this was many of our first experiences working with a relatively large team of other developers, communication was one of the key components of success. By communicating with each other 
@@ -249,7 +249,15 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
-            
+            <h2>Description</h2>
+            This project was the first project I created using React. At the time, I was learning a lot about algorithms in school, and so I was motivated to apply what I had learned. Sorting visualization 
+            is a relatively common project idea, and so to make it a bit more unique, I also designed a UI that lets the user change certain variables in the visualization such as the sorting speed, the set 
+            size, the sorting direction, and the algorithm. In addition, I also decided to include some statistical information to more clearly compare different algorithms.
+            <h2>Technologies</h2>
+            <b>The Sorting Visualizer</b> only used <b>React 16</b>. All of the algorithms run client-side, and the app doesn't store any information between sessions. The algorithms are implemented from 
+            scratch in JavaScript without any other libraries. 
+            <h2>Challenges</h2>
+            As this was my first time using React, the primary challenge learning about and implementing the fundamentals, such as understanding state and props.
           </Typography>
         </Box>
       </Modal>
