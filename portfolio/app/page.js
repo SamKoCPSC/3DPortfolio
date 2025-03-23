@@ -309,7 +309,7 @@ export default function Home() {
       </Modal>
       <Modal open={isModalOpen.Projektor} setOpen={(isOpen) => {handleModalOpen('Projektor', isOpen)}} width={1000} height={1200}>
         <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Projektor - Technical Support</Typography>
-        <Carousel slidesPerView={1} height={500} slides={['Pathfinder/Home1.png', 'Pathfinder/Basic1.png', 'Pathfinder/Wall1.png', 'Pathfinder/Multi1.png', 'Pathfinder/Weight1.png'].map((imageURL) => {
+        <Carousel slidesPerView={1} height={500} slides={['Projektor/Home1.png', 'Projektor/Home2.png', 'Projektor/Home3.png', 'Projektor/Home4.png', 'Projektor/Help1.png'].map((imageURL) => {
             return (
               <Box 
                 component={'img'}
@@ -323,6 +323,12 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
+          I was employed at <b>Projektor</b> as a <b>Technical Support Agent</b> from May 2019 to December 2023. I was hired through the University of British Colombia's Co-op Program, and was retained after the term ended, 
+          continuing to work part-time remotely while taking classes.<br/><br/>
+          Projektor is a media sharing platform for independent filmmakers and movie-watchers looking to sell and buy independent film content. The platform is a free-to-use transaction-based system, where filmmakers can freely 
+          upload content on their own, paying a small fee per customer transaction.<br/><br/>
+          My primary responsbilities included responding to technical support requests from users through email and our helpdesk software Zendesk. My secondary responsibilities included assisting with user testing, documentating bugs, 
+          creating and managing the FAQ page, data entry, and working with partners to expand content beyond Projektor.
           </Typography>
         </Box>
       </Modal>
