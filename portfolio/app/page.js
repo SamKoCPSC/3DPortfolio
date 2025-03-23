@@ -300,12 +300,31 @@ export default function Home() {
             <h2>Challenges</h2>
             Since this was my first real project, the main challenge was learning the basics of web development, particulary JavaScript, HTML, and CSS. As I had prior programming experience, JavaScript itself wasn't too much 
             a challenge since many skills are interchangeable between different programming languages. However HTML and CSS proved to be challenging intially, and it took a while to grasp how to work with the tree-like 
-            structure of HTML, and the very many CSS properties. Something as simple as 
+            structure of HTML, and the very many CSS properties. Something as simple as positioning a div was difficult, and I often had to rely on trial and error without really understanding how the elements were interacting 
+            with the many positional properties.<br/><br/>
+            Because I was working in basic JavaScript I didn't have the conveniences afforded by any frameworks or libraries. It wasn't obvious at the time, since I wasn't aware of the existence of JavaScript frameworks, but 
+            learning how to manually manipulate the DOM was tricky especially in the context of creating a moderately animated visualization due to the many moving parts that needed to be synchronized.
           </Typography>
         </Box>
       </Modal>
       <Modal open={isModalOpen.Projektor} setOpen={(isOpen) => {handleModalOpen('Projektor', isOpen)}} width={1000} height={1200}>
-        <Typography>Projektor</Typography>
+        <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Projektor - Technical Support</Typography>
+        <Carousel slidesPerView={1} height={500} slides={['Pathfinder/Home1.png', 'Pathfinder/Basic1.png', 'Pathfinder/Wall1.png', 'Pathfinder/Multi1.png', 'Pathfinder/Weight1.png'].map((imageURL) => {
+            return (
+              <Box 
+                component={'img'}
+                alt="image"
+                src={imageURL}
+                height='90%'
+              />
+            )
+          }
+        )}
+        />
+        <Box sx={{height: 475, overflow: 'auto'}}>
+          <Typography sx={{fontSize: '1.5rem'}}>
+          </Typography>
+        </Box>
       </Modal>
       <Modal open={isModalOpen.Lovbot} setOpen={(isOpen) => {handleModalOpen('Lovbot', isOpen)}} width={1000} height={1200}>
         <Typography>Lovbot</Typography>
