@@ -68,7 +68,7 @@ function CameraNavigator() {
   return null
 }
 
-export default function Home() {
+function GLBModels({onClickEvents, setOutlined}) {
   const modelList = [
     'NonInteractables', 
     'Noms', 
@@ -78,14 +78,24 @@ export default function Home() {
     'Projektor',
     'Lovbot',
     'Blenz'
-  ] 
+  ]
   const objects = useLoader(GLTFLoader, modelList.map((model) => {
-    return `/${model}.glb`
+    return `${model}.glb`
   }), (loader) => {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/draco-gltf/')
     loader.setDRACOLoader(dracoLoader)
   })
+  return objects.map((object, index) => {return <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={()=>{setOutlined(objects[index].scene.children)}} onPointerLeave={()=>{setOutlined([])}}/>})
+}
+export default function Home() {
+  // const objects = useLoader(GLTFLoader, modelList.map((model) => {
+  //   return `${model}.glb`
+  // }), (loader) => {
+  //   const dracoLoader = new DRACOLoader()
+  //   dracoLoader.setDecoderPath('/draco-gltf/')
+  //   loader.setDRACOLoader(dracoLoader)
+  // })
   const [outlined, setOutlined] = useState([])
   const [triggerNavigator, setTriggerNavigator] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState({
@@ -128,7 +138,8 @@ export default function Home() {
             <CameraScroller/>
           </ScrollControls>
           <ambientLight/>
-          {objects.map((object, index) => {return <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={()=>{setOutlined(objects[index].scene.children)}} onPointerLeave={()=>{setOutlined([])}}/>})}
+          <GLBModels onClickEvents={onClickEvents} setOutlined={setOutlined}/>
+          {/* {objects.map((object, index) => {return <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={()=>{setOutlined(objects[index].scene.children)}} onPointerLeave={()=>{setOutlined([])}}/>})} */}
           <EffectComposer autoClear={false}>
             <Outline
               selection={outlined}
