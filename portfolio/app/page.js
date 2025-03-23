@@ -280,7 +280,16 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
-            
+            <h2>Description</h2>
+            A <b>Pathfinder</b> was my first attempt at creating a web project on my own, without following a tutorial. Prior to this project, I had only worked on example projects uploaded on YouTube. The basic idea 
+            of the project was to visualize Dijkstra's Algorithm on a grid-based graph, complete with the ability to add weighted edges. In addition, I also added the functionality of being able to add multiple destination 
+            nodes, and multiple source nodes.
+            <h2>Technologies</h2>
+            As this was my first attempt at a web project, the entire project was coded in vanilla JavaScript, CSS, and HTML with no libraries. Dijkstra's was implemented from scratch, and is calculated client-side.
+            <h2>Challenges</h2>
+            Since this was my first real project, the main challenge was learning the basics of web development, particulary JavaScript, HTML, and CSS. As I had prior programming experience, JavaScript itself wasn't too much 
+            a challenge since many skills are interchangeable between different programming languages. However HTML and CSS proved to be challenging intially, and it took a while to grasp how to work with the tree-like 
+            structure of HTML, and the very many CSS properties. Something as simple as 
           </Typography>
         </Box>
       </Modal>
