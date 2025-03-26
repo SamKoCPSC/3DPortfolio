@@ -323,20 +323,54 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
-          I was employed at <b>Projektor</b> as a <b>Technical Support Agent</b> from May 2019 to December 2023. I was hired through the University of British Colombia's Co-op Program, and was retained after the term ended, 
-          continuing to work part-time remotely while taking classes.<br/><br/>
-          Projektor is a media sharing platform for independent filmmakers and movie-watchers looking to sell and buy independent film content. The platform is a free-to-use transaction-based system, where filmmakers can freely 
-          upload content on their own, paying a small fee per customer transaction.<br/><br/>
-          My primary responsbilities included responding to technical support requests from users through email and our helpdesk software Zendesk. My secondary responsibilities included assisting with user testing, documentating bugs, 
-          creating and managing the FAQ page, data entry, and working with partners to expand content beyond Projektor.
+          
           </Typography>
         </Box>
       </Modal>
       <Modal open={isModalOpen.Lovbot} setOpen={(isOpen) => {handleModalOpen('Lovbot', isOpen)}} width={1000} height={1200}>
-        <Typography>Lovbot</Typography>
+        <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Lovbot Education - Coding Instructor</Typography>
+        <Carousel slidesPerView={1} height={500} slides={['Lovbot/Arduino1.png'].map((imageURL) => {
+            return (
+              <Box 
+                component={'img'}
+                alt="image"
+                src={imageURL}
+                height='90%'
+              />
+            )
+          }
+        )}
+        />
+        <Box sx={{height: 475, overflow: 'auto'}}>
+          <Typography sx={{fontSize: '1.5rem'}}>
+            I am currently employed as a part-time coding instructor by <b>Lovbot Education</b>, a youth robotics and coding education center. I primarily work with their partner Quantum Academy, running small classes 
+            of 2-5 students ages 8-13. <br/><br/>
+            The class curriculum primarily utlizes the DFRobot Arduino Kit designed for introducing basic electronics and coding concepts to beginners. Projects include adjustable RGB lighting, a miniature motorized fan, 
+            a temperature sensor etc. In addition, I also teach basic coding concepts using Arduino's C++ based IDE.<br/><br/>
+          </Typography>
+        </Box>
       </Modal>
       <Modal open={isModalOpen.Blenz} setOpen={(isOpen) => {handleModalOpen('Blenz', isOpen)}} width={1000} height={1200}>
-        <Typography>Blenz</Typography>
+        <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Blenz Coffee - Barista</Typography>
+        <Carousel slidesPerView={1} height={500} slides={['Blenz/Logo1.png'].map((imageURL) => {
+            return (
+              <Box 
+                component={'img'}
+                alt="image"
+                src={imageURL}
+                height='90%'
+              />
+            )
+          }
+        )}
+        />
+        <Box sx={{height: 475, overflow: 'auto'}}>
+          <Typography sx={{fontSize: '1.5rem'}}>
+             I was employed by Blenz Coffee (Seafair & Robson St.) as a part-time barista from 2018 - 2022. During my time there, I excelled at coffee making and customer service, and achieved various awards 
+             for my latte art skills. <br/><br/>
+             Responsibilities included typical food service tasks such as serving/preparing food and drinks, dishwashing, cleaning, using a POS, handling cash, and exercising good teamwork and communication skills. 
+          </Typography>
+        </Box>
       </Modal>
     </div>
   )
