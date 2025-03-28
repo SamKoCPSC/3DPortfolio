@@ -22,7 +22,7 @@ const cameraPath = [
   {position: new THREE.Vector3(-2.2,2.3,-0.8), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,0,Math.PI/2))},
   {position: new THREE.Vector3(-2,1.35,-1.33), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,Math.PI/2.8,0))},
   {position: new THREE.Vector3(-0.5,1.5,-0.6), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,Math.PI/5,0))},
-  {position: new THREE.Vector3(-0.5,2.5,-4.2), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,Math.PI/2.4,Math.PI/2))},
+  {position: new THREE.Vector3(-0.5,2.5,-4.25), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,Math.PI/2.4,Math.PI/2))},
   {position: new THREE.Vector3(-0.5,1.5,-1.2), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(0,-Math.PI/2,0))},
   {position: new THREE.Vector3(0.5,1.1,-1.2), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,-Math.PI/2.4,-Math.PI/2))},
   {position: new THREE.Vector3(0.5,0.9,-2.8), rotation: new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,-Math.PI/2,-Math.PI/2))},
@@ -42,7 +42,7 @@ function CameraScroller() {
       camera.quaternion.slerpQuaternions(cameraPath[pathIndex].rotation, cameraPath[pathIndex+1].rotation, lerpFactor)
       camera.position.lerpVectors(cameraPath[pathIndex].position, cameraPath[pathIndex+1].position, lerpFactor) 
     }
-  });
+  })
   return null
 }
 
@@ -68,6 +68,20 @@ function CameraNavigator() {
   return null
 }
 
+function CameraZoomer({windowWidth}) {
+  useFrame(({camera}) => {
+    camera.fov =  windowWidth > 2000 ? 50 : 
+                  windowWidth > 1450 ? 60 : 
+                  windowWidth > 1200 ? 70 : 
+                  windowWidth > 1000 ? 80 : 
+                  windowWidth > 840  ? 90 :
+                  windowWidth > 700  ? 100 : 
+                  110
+    camera.updateProjectionMatrix();
+  })
+  return null
+}
+
 function GLBModels({onClickEvents, setOutlined}) {
   const modelList = [
     'NonInteractables', 
@@ -89,13 +103,20 @@ function GLBModels({onClickEvents, setOutlined}) {
   return objects.map((object, index) => {return <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={()=>{setOutlined(objects[index].scene.children)}} onPointerLeave={()=>{setOutlined([])}}/>})
 }
 export default function Home() {
-  // const objects = useLoader(GLTFLoader, modelList.map((model) => {
-  //   return `${model}.glb`
-  // }), (loader) => {
-  //   const dracoLoader = new DRACOLoader()
-  //   dracoLoader.setDecoderPath('/draco-gltf/')
-  //   loader.setDRACOLoader(dracoLoader)
-  // })
+  const [windowWidth, setWindowWidth] = useState();
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [])
   const [outlined, setOutlined] = useState([])
   const [triggerNavigator, setTriggerNavigator] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState({
@@ -131,12 +152,19 @@ export default function Home() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Navbar handleNavigate={handleNavigate}/>
-      <Canvas camera={{fov: 50}}>
+      <Canvas camera={{fov: 
+        windowWidth > 1450 ? 60 : 
+        windowWidth > 1200 ? 70 : 
+        windowWidth > 1000 ? 80 : 
+        windowWidth > 840  ? 90 :
+        windowWidth > 700  ? 100 : 110
+      }}>
         <Suspense fallback={null}>
           <ScrollControls pages={cameraPath.length * 1.2}>
             <CameraNavigator triggerNavigator={triggerNavigator}/>  
             <CameraScroller/>
           </ScrollControls>
+          <CameraZoomer windowWidth={windowWidth}/>
           <ambientLight/>
           <GLBModels onClickEvents={onClickEvents} setOutlined={setOutlined}/>
           {/* {objects.map((object, index) => {return <primitive key={index} object={object.scene} onClick={onClickEvents[index]} onPointerEnter={()=>{setOutlined(objects[index].scene.children)}} onPointerLeave={()=>{setOutlined([])}}/>})} */}
@@ -173,6 +201,7 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
+            <h3>Window Width: ghjghkjgkhj{windowWidth}</h3>
             <h2>Description</h2>
             <b>Noms</b> is a full-stack application designed to help cooks develop, manage, and share recipes. As a cooking enthusiast myself I found that I often didn't
             have a convenient place to store recipes, and in addition I found that as I adjusted recipes over time, I didn't have to good way to track what changes
