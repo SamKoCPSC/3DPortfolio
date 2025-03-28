@@ -153,6 +153,7 @@ export default function Home() {
     <div style={{ width: "100vw", height: "100vh" }}>
       <Navbar handleNavigate={handleNavigate}/>
       <Canvas camera={{fov: 
+        windowWidth > 2000 ? 50 : 
         windowWidth > 1450 ? 60 : 
         windowWidth > 1200 ? 70 : 
         windowWidth > 1000 ? 80 : 
