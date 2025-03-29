@@ -181,10 +181,11 @@ export default function Home() {
           </EffectComposer>
         </Suspense>
       </Canvas>
-      <Modal open={isModalOpen.Welcome} setOpen={(isOpen) =>{handleModalOpen('Welcome', isOpen)}} width={1000} height={500}>
+      <Modal open={isModalOpen.Welcome} setOpen={(isOpen) =>{handleModalOpen('Welcome', isOpen)}} width={1000} height={550}>
         <Typography sx={{fontSize: '3.5rem', marginBottom: '30px'}}>Hi there! Welcome to my Portfolio</Typography>
         <Typography sx={{fontSize: '2rem', marginBottom: '20px'}}>This is a fun project I created to showcase some of my work and introduce some things about myself</Typography>
-        <Typography sx={{fontSize: '2rem'}}>To navigate through the scene, simply scroll up and down, or use the navigation bar at the top of the page</Typography>
+        <Typography sx={{fontSize: '2rem', marginBottom: '20px'}}>To navigate through the scene, simply scroll up and down, or use the navigation bar at the top of the page</Typography>
+        <Typography sx={{fontSize: '2rem'}}>Click on certain objects to get more information</Typography>
       </Modal>
       <Modal open={isModalOpen.Noms} setOpen={(isOpen) => {handleModalOpen('Noms', isOpen)}} width={1000} height={1200}>
         <Typography sx={{fontSize: '4rem', alignSelf: 'center'}}>Noms - Recipe Management App</Typography>
@@ -353,7 +354,12 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
-          
+            I was employed at <b>Projektor</b> as a <b>Technical Support Agent</b> from May 2019 to December 2023. I was hired through the University of British Colombia's Co-op Program, and was retained after the term ended, 
+            continuing to work part-time remotely while taking classes.<br/><br/>
+            Projektor is a media sharing platform for independent filmmakers and movie-watchers looking to sell and buy independent film content. The platform is a free-to-use transaction-based system, where filmmakers can freely 
+            upload content on their own, paying a small fee per customer transaction.<br/><br/>
+            My primary responsbilities included responding to technical support requests from users through email and our helpdesk software Zendesk. My secondary responsibilities included assisting with user testing, documentating bugs, 
+            creating and managing the FAQ page, data entry, and working with partners to expand content beyond Projektor.
           </Typography>
         </Box>
       </Modal>
