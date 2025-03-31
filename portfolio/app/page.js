@@ -13,6 +13,7 @@ import * as THREE from "three"
 import Navbar from "./components/Navbar"
 import Modal from "./components/Modal"
 import Carousel from "./components/Carousel"
+import Link from "next/link"
 
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -203,7 +204,7 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
-            <h3>Window Width: ghjghkjgkhj{windowWidth}</h3>
+            <Link href={'http://main.d1m6rdx4zhgpm7.amplifyapp.com'} style={{color: '#00259e'}}><u>Click here to check it out</u></Link>
             <h2>Description</h2>
             <b>Noms</b> is a full-stack application designed to help cooks develop, manage, and share recipes. As a cooking enthusiast myself I found that I often didn't
             have a convenient place to store recipes, and in addition I found that as I adjusted recipes over time, I didn't have to good way to track what changes
@@ -291,6 +292,7 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
+          <Link href={'http://master.d3uc2ibryaxqhc.amplifyapp.com'} style={{color: '#00259e'}}><u>Click here to check it out</u></Link>
             <h2>Description</h2>
             This project was the first project I created using React. At the time, I was learning a lot about algorithms in school, and so I was motivated to apply what I had learned. Sorting visualization 
             is a relatively common project idea, and so to make it a bit more unique, I also designed a UI that lets the user change certain variables in the visualization such as the sorting speed, the set 
@@ -322,6 +324,7 @@ export default function Home() {
         />
         <Box sx={{height: 475, overflow: 'auto'}}>
           <Typography sx={{fontSize: '1.5rem'}}>
+            <Link href={'http://master.d2yzej7t2rl11l.amplifyapp.com'} style={{color: '#00259e'}}><u>Click here to check it out</u></Link>
             <h2>Description</h2>
             A <b>Pathfinder</b> was my first attempt at creating a web project on my own, without following a tutorial. Prior to this project, I had only worked on example projects uploaded on YouTube. The basic idea 
             of the project was to visualize Dijkstra's Algorithm on a grid-based graph, complete with the ability to add weighted edges. In addition, I also added the functionality of being able to add multiple destination 
